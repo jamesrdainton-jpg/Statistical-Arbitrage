@@ -1,0 +1,22 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+
+# Environments
+venv/
+.venv/
+
+# Tooling
+.pytest_cache/
+.ipynb_checkpoints/
+
+# Cached price data. Delete this line (or `git add -f data/prices.csv`) if you
+# want the frozen dataset committed so backtest results are reproducible.
+data/*.csv
+
+# Outputs
+outputs/
+*.png
