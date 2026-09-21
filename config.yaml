@@ -1,0 +1,44 @@
+# All tunable parameters live here so no numbers are hard-coded in the code.
+# Load with pairs.config.load_config().
+
+data:
+  start: "2015-01-01"
+  end: "2025-12-31"
+  cache: "data/prices.csv"     # relative to the project root
+  max_missing_frac: 0.05       # drop a ticker if it is missing more than this
+
+  # Universe grouped by sector. Pairs within a sector have an economic reason to
+  # move together, which makes any cointegration found more believable (and the
+  # grouping is used later to prefer same-sector pairs).
+  universe:
+    energy: [SHEL.L, BP.L]
+    banks: [LLOY.L, NWG.L, BARC.L, HSBA.L]
+    retail: [TSCO.L, SBRY.L, MKS.L]
+    utilities: [NG.L, SSE.L, UU.L]
+
+# Formation period is for choosing pairs and tuning; everything on or after
+# split_date is out-of-sample.
+split:
+  split_date: "2020-01-01"
+
+selection:
+  pvalue_threshold: 0.05
+  max_pairs: 5
+  min_half_life: 5             # trading days
+  max_half_life: 60
+
+kalman:
+  delta: 0.0001                # how fast beta is allowed to drift
+  obs_noise: 0.001             # observation (price) noise variance
+
+signals:
+  entry_z: 2.0
+  exit_z: 0.5
+  stop_z: 4.0
+
+costs:
+  commission_bps: 5
+  slippage_bps: 5
+
+benchmark:
+  index: "^FTSE"
