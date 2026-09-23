@@ -25,7 +25,7 @@ round-trip costs:
 | Win rate | 64.7% | — |
 | Avg holding period | 11.4 days | — |
 
-![Equity curve](reports/equity_curve.png)
+![Equity curve]
 
 The headline is risk, not return. The strategy edges the index on total return, but
 the interesting number is the drawdown — a quarter of the index's, with a Sharpe
