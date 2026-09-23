@@ -7,19 +7,20 @@ data:
   cache: "data/prices.csv"     # relative to the project root
   max_missing_frac: 0.05       # drop a ticker if it is missing more than this
 
-  # Universe grouped by sector. Pairs within a sector have an economic reason to
-  # move together, which makes any cointegration found more believable (and the
-  # grouping is used later to prefer same-sector pairs).
   universe:
     energy: [SHEL.L, BP.L]
-    banks: [LLOY.L, NWG.L, BARC.L, HSBA.L]
-    retail: [TSCO.L, SBRY.L, MKS.L]
-    utilities: [NG.L, SSE.L, UU.L]
+    mining: [RIO.L, AAL.L, GLEN.L, ANTO.L]
+    banks: [LLOY.L, NWG.L, BARC.L, HSBA.L, STAN.L]
+    insurance: [AV.L, LGEN.L, PRU.L, ADM.L]
+    retail: [TSCO.L, SBRY.L, MKS.L, NXT.L, KGF.L]
+    staples: [ULVR.L, DGE.L, RKT.L, BATS.L, IMB.L]
+    pharma: [AZN.L, GSK.L]
+    utilities: [NG.L, SSE.L, UU.L, SVT.L, CNA.L]
+    telecom: [BT-A.L, VOD.L]
 
-# Formation period is for choosing pairs and tuning; everything on or after
-# split_date is out-of-sample.
-split:
-  split_date: "2020-01-01"
+walkforward:
+  train_days: 252              # ~1 year of trading days
+  test_days: 126               # ~6 months
 
 selection:
   pvalue_threshold: 0.05
@@ -28,7 +29,7 @@ selection:
   max_half_life: 60
 
 kalman:
-  delta: 0.0001                # how fast beta is allowed to drift
+  delta: 0.00000001                # how fast beta is allowed to drift
   obs_noise: 0.001             # observation (price) noise variance
 
 signals:
@@ -42,3 +43,4 @@ costs:
 
 benchmark:
   index: "^FTSE"
+  cache: "data/benchmark.csv"   # kept separate from the universe cache
