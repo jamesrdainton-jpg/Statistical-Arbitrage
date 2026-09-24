@@ -1,5 +1,3 @@
-"""Walk-forward backtest: re-select pairs every window, trade the next chunk."""
-
 import matplotlib.pyplot as plt
 import pandas as pd
 
@@ -52,7 +50,7 @@ def run_pair(a, b, train, test):
     )
     return net, trades
 
-
+# Claude's code for the formatting 
 def plot_equity(oos, bench, bench_name, path):
     span = bench.loc[oos.index.min():oos.index.max()]
     strategy = (1 + oos.reindex(span.index).fillna(0)).cumprod()
